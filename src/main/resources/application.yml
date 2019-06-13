@@ -1,0 +1,40 @@
+server:
+#  port: 10086
+#  context-path: /demo
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource      # 配置当前要使用的数据源的操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver      # 配置MySQL的驱动程序类
+    url: jdbc:mysql://localhost:3306/tickit?characterEncoding=UTF-8&useSSL=true
+    username: root
+    password: Chen247.
+    # 可省略驱动配置, sprin-boot 会由url检测出驱动类型
+#    # driver-class-name: com.mysql.jdbc.Driver
+    filters: stat,wall,log4j
+#      dbcp2:                                          # 进行数据库连接池的配置
+#        min-idle: 5                                   # 数据库连接池的最小维持连接数
+#        initial-size: 5                               # 初始化提供的连接数
+#        max-total: 5                                  # 最大的连接数
+#        max-wait-millis: 200                          # 等待连接获取的最大超时时间
+    hikari:
+      connection-timeout: 60000
+
+    #activeMQ配置
+    messages:
+      basename: i18n/Messages,i18n/Pages
+      jms:
+        pub-sub-domain: false   # 配置消息的类型，如果是true则表示为topic消息，如果为false表示Queue消息
+      activemq:
+        user: chr          # 连接用户名
+        password: 123456   # 连接密码
+        broker-url: tcp://activemq-server:61616 # 消息组件的连接主机信息
+
+mybatis:
+#  注意路径问题(坑)
+  mapperLocations: classpath:web/mapper/*.xml
+#  typeAliasesPackage: web.entity
+# spring-boot默认打印输出info级别以上的，可在此处修改输出级别
+#logging:
+#  level:
+#    root: info
