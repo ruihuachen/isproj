@@ -13,4 +13,9 @@
     <select id="selectUserById" parameterType="int" resultMap="BaseResultMap">
         SELECT * FROM user WHERE USER_ID = #{userId}
     </select>
+    <!-- 查询全部用户记录 -->
+    <select id="findAllUsers" resultMap="BaseResultMap">
+        SELECT * FROM user
+    </select>
+
 </mapper>
